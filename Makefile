@@ -13,6 +13,7 @@ build/winmm.dll: $(SRC) src/highfps.h src/proxy_names.h
 dist: build/winmm.dll
 	rm -rf dist && mkdir -p dist/isaac-highfps
 	cp build/winmm.dll highfps.ini dist/isaac-highfps/
+	cp installer/install.bat installer/uninstall.bat installer/install.ps1 installer/install-linux.sh dist/isaac-highfps/
 	cp dist-readme.txt dist/isaac-highfps/README.txt
 	cd dist && zip -r isaac-highfps.zip isaac-highfps
 

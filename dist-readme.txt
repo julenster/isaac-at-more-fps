@@ -1,18 +1,24 @@
-isaac-highfps - high FPS for The Binding of Isaac: Repentance+ (v1.9.7.17)
+isaac-highfps - smooth high refresh rate for The Binding of Isaac: Repentance+
 https://github.com/julenster/isaac-highfps
 
-INSTALL
-  1. Steam > right-click The Binding of Isaac > Manage > Browse local files
-  2. Copy winmm.dll (and optionally highfps.ini) into that folder
-  3. Linux / Steam Deck only: Properties > General > Launch options:
-         WINEDLLOVERRIDES="winmm=n,b" %command%
-  Done. Play as usual.
+WINDOWS
+  Double-click install.bat. Done.
+  (To remove it: double-click uninstall.bat)
 
-UNINSTALL
-  Delete winmm.dll (and highfps.ini, highfps.log). On Linux, clear the launch option.
+LINUX / STEAM DECK (desktop mode)
+  Open a terminal in this folder and run:   sh install-linux.sh
+  Then in Steam: right-click the game > Properties > General > Launch options:
+      WINEDLLOVERRIDES="winmm=n,b" %command%
+  (To remove it: sh install-linux.sh uninstall)
 
+MANUAL INSTALL (any system)
+  Copy winmm.dll into the game folder
+  (Steam > right-click the game > Manage > Browse local files).
+  Linux / Steam Deck also need the launch option above.
+
+------------------------------------------------------------------------
 ESPAÑOL
-  Instalar: copia winmm.dll en la carpeta del juego (Steam > clic derecho >
-  Administrar > Ver archivos locales). En Linux / Steam Deck añade además en
-  Opciones de lanzamiento:  WINEDLLOVERRIDES="winmm=n,b" %command%
-  Desinstalar: borra winmm.dll.
+  Windows: doble clic en install.bat. Listo. (Para quitarlo: uninstall.bat)
+  Linux / Steam Deck: en una terminal en esta carpeta:  sh install-linux.sh
+  y en Steam > clic derecho > Propiedades > General > Opciones de lanzamiento:
+      WINEDLLOVERRIDES="winmm=n,b" %command%
