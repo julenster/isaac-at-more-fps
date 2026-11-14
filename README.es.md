@@ -1,4 +1,4 @@
-# isaac-highfps
+# Isaac at More FPS
 
 **Hace que The Binding of Isaac: Repentance+ se vea tan fluido como permita tu monitor (144, 165, 240 Hz…) sin cambiar cómo se juega.**
 
@@ -14,7 +14,7 @@ Este mod hace que el juego dibuje tantas imágenes por segundo como pueda mostra
 
 ## Instalación
 
-**[⬇ Descarga isaac-highfps.zip](https://github.com/julenster/isaac-highfps/releases/latest/download/isaac-highfps.zip)** y descomprímelo.
+**[⬇ Descarga isaac-at-more-fps.zip](https://github.com/julenster/isaac-at-more-fps/releases/latest/download/isaac-at-more-fps.zip)** y descomprímelo.
 
 ### Windows
 Doble clic en **`install.bat`**. Listo, a jugar.
@@ -74,7 +74,7 @@ El mod no toca esos 60 cálculos. Cuando tu monitor pide una imagen nueva entre 
 3. **Interpolación genérica de entidades.** Repentance+ ejecuta la lógica a 30 Hz y dibuja un frame extra de medio paso con el `Interpolate()` virtual de cada entidad. El juego tiene 9 implementaciones distintas (lágrimas, láseres, cuchillos, efectos y gore...). En vez de parchearlas, el mod guarda el estado de cada entidad tras cada tick de lógica (posición, posición de respaldo, flags, altura). En cada frame dibujado restaura ese estado, llama al `Interpolate()` del propio juego (que avanza medio tick) y escala el desplazamiento resultante a la fracción exacta que toca. Esto corrige también campos acumulativos, como la altura del gore.
 4. **Jugador y cámara.** El jugador recibe un `Update()` real en el frame de medio paso, así que no se puede extrapolar sin efectos secundarios (el movimiento y la invencibilidad irían más rápido). En su lugar, la posición del jugador y el desplazamiento de render de la sala (la cámara) se interpolan entre sus dos últimos valores reales de 60 Hz.
 5. **Restauración exacta.** Antes de cada update real del juego, el mod restaura exactamente lo que el juego original tendría en ese momento, así que la lógica solo ve el estado original.
-6. **Comprobación de seguridad.** Antes de parchear, el mod verifica los bytes exactos que espera en cada sitio. Con cualquier otra versión del juego se desactiva y apunta el motivo en `highfps.log`.
+6. **Comprobación de seguridad.** Antes de parchear, el mod verifica los bytes exactos que espera en cada sitio. Con cualquier otra versión del juego se desactiva y apunta el motivo en `morefps.log`.
 
 ## Hecho con Claude (IA)
 
@@ -84,13 +84,13 @@ Lo digo desde el principio porque creo que merece la pena ser transparente, y po
 
 ## Ajustes (opcional)
 
-`highfps.ini` está junto a `winmm.dll` en la carpeta del juego:
+`morefps.ini` está junto a `winmm.dll` en la carpeta del juego:
 
 | Clave | Por defecto | |
 |---|---|---|
 | `enabled` | `1` | `0` desactiva el mod sin desinstalarlo |
 | `max_fps` | `0` | Límite de FPS. `0` = sin límite (decide el VSync) |
-| `log_fps` | `0` | `1` escribe los FPS y la velocidad de la lógica en `highfps.log` cada 2 s |
+| `log_fps` | `0` | `1` escribe los FPS y la velocidad de la lógica en `morefps.log` cada 2 s |
 
 ## Compatibilidad
 
@@ -98,13 +98,13 @@ Lo digo desde el principio porque creo que merece la pena ser transparente, y po
 - **Probado:** Linux (Proton Experimental), monitor de 240 Hz, y limitado a 90 y 144 FPS.
 - **Aún sin probar:** Windows (mismo archivo y mismo método de carga, así que debería funcionar; se agradecen los informes), Steam Deck, online, REPENTOGON.
 
-¿Algún problema? [Abre un issue](https://github.com/julenster/isaac-highfps/issues) y adjunta `highfps.log` (pon antes `log_fps=1`).
+¿Algún problema? [Abre un issue](https://github.com/julenster/isaac-at-more-fps/issues) y adjunta `morefps.log` (pon antes `log_fps=1`).
 
 ## Compilar desde el código
 
 ```
 make        # necesita i686-w64-mingw32-gcc (Arch: mingw-w64-gcc · Debian/Ubuntu: gcc-mingw-w64-i686)
-make dist   # genera dist/isaac-highfps.zip
+make dist   # genera dist/isaac-at-more-fps.zip
 ```
 
 ## Créditos

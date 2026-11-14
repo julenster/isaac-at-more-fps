@@ -1,5 +1,5 @@
 #!/bin/sh
-# isaac-highfps installer for Linux / Steam Deck.
+# isaac-at-more-fps installer for Linux / Steam Deck.
 #   sh install-linux.sh            install
 #   sh install-linux.sh uninstall  uninstall
 HERE="$(cd "$(dirname "$0")" && pwd)"
@@ -18,7 +18,7 @@ find_game() {
 }
 
 echo
-echo "  isaac-highfps"
+echo "  Isaac at More FPS"
 echo
 GAME="$(find_game)"
 if [ -z "$GAME" ]; then
@@ -34,13 +34,13 @@ if pgrep -f "isaac-ng.exe" >/dev/null 2>&1; then
 fi
 
 if [ "$1" = "uninstall" ]; then
-    rm -f "$GAME/winmm.dll" "$GAME/highfps.ini" "$GAME/highfps.log"
+    rm -f "$GAME/winmm.dll" "$GAME/morefps.ini" "$GAME/morefps.log"
     echo "  Uninstalled. You can remove the launch option from Steam too."
     exit 0
 fi
 
 cp -f "$HERE/winmm.dll" "$GAME/winmm.dll"
-[ -f "$GAME/highfps.ini" ] || cp "$HERE/highfps.ini" "$GAME/highfps.ini"
+[ -f "$GAME/morefps.ini" ] || cp "$HERE/morefps.ini" "$GAME/morefps.ini"
 echo "  Installed!"
 echo
 echo "  One last step in Steam: right-click the game > Properties > General >"

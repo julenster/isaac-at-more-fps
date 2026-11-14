@@ -1,4 +1,4 @@
-# isaac-highfps installer for Windows. Run install.bat (or uninstall.bat) instead of this file.
+# isaac-at-more-fps installer for Windows. Run install.bat (or uninstall.bat) instead of this file.
 param([switch]$Uninstall)
 $ErrorActionPreference = 'Stop'
 $here = Split-Path -Parent $MyInvocation.MyCommand.Path
@@ -39,7 +39,7 @@ function Ask-IsaacFolder {
 }
 
 Write-Host ''
-Write-Host '  isaac-highfps' -ForegroundColor Cyan
+Write-Host '  Isaac at More FPS' -ForegroundColor Cyan
 Write-Host ''
 
 $game = Find-IsaacFolder
@@ -55,7 +55,7 @@ if (Get-Process -Name 'isaac-ng' -ErrorAction SilentlyContinue) {
 }
 
 if ($Uninstall) {
-    foreach ($f in 'winmm.dll', 'highfps.ini', 'highfps.log') {
+    foreach ($f in 'winmm.dll', 'morefps.ini', 'morefps.log') {
         $p = Join-Path $game $f
         if (Test-Path $p) { Remove-Item $p -Force }
     }
@@ -64,7 +64,7 @@ if ($Uninstall) {
 }
 
 Copy-Item (Join-Path $here 'winmm.dll') (Join-Path $game 'winmm.dll') -Force
-$ini = Join-Path $game 'highfps.ini'
-if (-not (Test-Path $ini)) { Copy-Item (Join-Path $here 'highfps.ini') $ini }
+$ini = Join-Path $game 'morefps.ini'
+if (-not (Test-Path $ini)) { Copy-Item (Join-Path $here 'morefps.ini') $ini }
 Write-Host '  Installed! Launch the game from Steam as usual.' -ForegroundColor Green
 Write-Host '  Tip: turn VSync on in the game options so the frame rate follows your monitor.'

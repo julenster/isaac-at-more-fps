@@ -17,10 +17,10 @@
 #include <stdlib.h>
 #include <stdarg.h>
 #include <string.h>
-#include "highfps.h"
+#include "morefps.h"
 
 uintptr_t g_delta;
-#define ISAAC240_VERSION "1.0.0"
+#define MOREFPS_VERSION "1.0.0"
 static double frame_time = 1.0 / 1000.0;
 static FILE *logfile;
 static int fpslog;
@@ -28,7 +28,7 @@ static int fpslog;
 void logf_(const char *fmt, ...) {
     if (!logfile) return;
     va_list ap; va_start(ap, fmt);
-    fprintf(logfile, "[highfps] ");
+    fprintf(logfile, "[morefps] ");
     vfprintf(logfile, fmt, ap);
     fputc('\n', logfile);
     fflush(logfile);
@@ -347,21 +347,21 @@ static void install(void) {
     char *slash = strrchr(ini, '\\');
     if (slash) slash[1] = 0;
     char logpath[MAX_PATH];
-    lstrcpyA(logpath, ini); lstrcatA(logpath, "highfps.log");
-    lstrcatA(ini, "highfps.ini");
+    lstrcpyA(logpath, ini); lstrcatA(logpath, "morefps.log");
+    lstrcatA(ini, "morefps.ini");
     logfile = fopen(logpath, "w");
 
-    int enabled = GetPrivateProfileIntA("highfps", "enabled", 1, ini);
-    int max_fps = GetPrivateProfileIntA("highfps", "max_fps", 0, ini);
-    fpslog      = GetPrivateProfileIntA("highfps", "log_fps", 0, ini);
-    if (GetEnvironmentVariableA("HIGHFPS_LOG", buf, sizeof buf) > 0) fpslog = 1;
-    if (GetEnvironmentVariableA("HIGHFPS_MAXFPS", buf, sizeof buf) > 0) max_fps = atoi(buf);
+    int enabled = GetPrivateProfileIntA("morefps", "enabled", 1, ini);
+    int max_fps = GetPrivateProfileIntA("morefps", "max_fps", 0, ini);
+    fpslog      = GetPrivateProfileIntA("morefps", "log_fps", 0, ini);
+    if (GetEnvironmentVariableA("MOREFPS_LOG", buf, sizeof buf) > 0) fpslog = 1;
+    if (GetEnvironmentVariableA("MOREFPS_MAXFPS", buf, sizeof buf) > 0) max_fps = atoi(buf);
 
     g_delta = (uintptr_t)GetModuleHandleA(NULL) - 0x400000;
     QueryPerformanceFrequency(&qpf);
-    LOG("isaac-highfps v" ISAAC240_VERSION " | base=%p | max_fps=%d (0 = unlimited / VSync)",
+    LOG("Isaac at More FPS v" MOREFPS_VERSION " | base=%p | max_fps=%d (0 = unlimited / VSync)",
         GetModuleHandleA(NULL), max_fps);
-    if (!enabled) { LOG("disabled in highfps.ini"); return; }
+    if (!enabled) { LOG("disabled in morefps.ini"); return; }
 
     // Verificar que es la versión esperada antes de tocar nada
     uint8_t *call = (uint8_t *)REB(ADDR_CallIsaacUpdate);

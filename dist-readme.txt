@@ -1,5 +1,5 @@
-isaac-highfps - smooth high refresh rate for The Binding of Isaac: Repentance+
-https://github.com/julenster/isaac-highfps
+Isaac at More FPS - smooth high refresh rate for The Binding of Isaac: Repentance+
+https://github.com/julenster/isaac-at-more-fps
 
 WINDOWS
   Double-click install.bat. Done.
